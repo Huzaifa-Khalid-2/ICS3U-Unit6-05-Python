@@ -1,46 +1,43 @@
 #!/usr/bin/env python3
 
-# Created by: Huzaifa Khalid
-# Created on: May 2022
-# This program print 10 random numbers and shows the largest number
+# Created by Huzaifa Khalid
+# Created on June 2022
+# This is a program that finds the average of numbers in an array
 
 import random
 
 
-def largest_number(number):
-    # This function finds the largest number
+def number_average(everymark):
+    # this function find the average
 
-    big_number = number[1]
+    the_average = 0
+    for singlemark in everymark:
+        the_average = singlemark + the_average
+    the_average = the_average / len(everymark)
 
-    # process
-    for counter in number:
-        if counter > big_number:
-            big_number = counter
-
-    return big_number
+    return the_average
 
 
 def main():
-    # This function prints the largest number
-    number = []
+    # this function gets the marks
 
-    # heading
-    print("A list of random numbers: ")
+    marks = []
+
+    # input
+    mark = int(input("What is your Mark? (as %): "))
+    marks.append(mark)
+    while mark != -1:
+        while mark > 100 or mark < -1:
+            marks.pop()
+            mark = int(input("Invalid Mark! What Is Your Mark? (as %): "))
+            marks.append(mark)
+        mark = int(input("What is your Mark? (as %): "))
+        marks.append(mark)
+    marks.pop()
     print("")
 
-    # process
-    for counter in range(1, 11):
-        random_numbers = random.randint(1, 100)
-        number.append(random_numbers)
-        print("The random number is {0}".format(random_numbers))
-
-    # call functions
-    big_number = largest_number(number)
-
-    # output
-    print("\nThe largest number is: {0}".format(big_number))
-
-    print("\nDone.")
+    average = number_average(marks)
+    print("The average is: {0}%.".format(average))
 
 
 if __name__ == "__main__":
